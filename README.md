@@ -24,13 +24,13 @@ This Rust project demonstrates how to interact with an Ethereum ERC20 token and 
 1. Clone this repository:
 
 ```bash
-git clone https://github.com/michaelkernaghan/ethereum_erc20_interaction.git
+git clone https://github.com/michaelkernaghan/erc-20-tokens.git
 ```
 
 2. Change the working directory:
 
 ```bash
-cd ethereum_erc20_interaction
+cd erc-20-tokens
 ```
 
 3. Update the Ethereum node URL in the `connect_to_ethereum_node()` function with your API key:
