@@ -42,12 +42,13 @@ async fn interact_with_erc20(web3: &Web3<Http>, token_address: &str, user_addres
     println!("User's token balance: {}", balance);
 }
 
-async fn get_transactions(web3: &Web3<Http>, user_address: &str) {
+async fn get_transactions(web3: &Web3<Http>, user_address: &str, from_block: u64) {
     let user_address: Address = user_address.parse().unwrap();
     let mut transactions: Vec<Transaction> = vec![];
     let latest_block_number = web3.eth().block_number().await.unwrap();
-    let start_block = web3::types::U256::from(latest_block_number.as_u64()) - web3::types::U256::from(17144990); // Adjust this number based on how far back you want to search
-    for block_number in (start_block.as_u64()..=latest_block_number.as_u64()).rev() {
+    let start_block = web3::types::U256::from(latest_block_number.as_u64()) - web3::types::U256::from(from_block as u64); // Added from_block
+    for block_number in start_block.as_u64()..=latest_block_number.as_u64() {
+        println!("Checking block number: {}", block_number); // Added print statement
         let block = web3
             .eth()
             .block(BlockId::Number(BlockNumber::Number(block_number.into())))
@@ -82,6 +83,7 @@ async fn main() {
     let web3 = connect_to_ethereum_node().await;
     let token_address = "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48"; // USDC
     let user_address = "0x54263d2C8D849006C97De20D3Eb9A68D90Fdb5A0"; // mk personal
+    let from_block = 	6000; // how many blocks to look backward   
     interact_with_erc20(&web3, token_address, user_address).await;
-    get_transactions(&web3, user_address).await;
+    get_transactions(&web3, user_address, from_block).await;
 }
