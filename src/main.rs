@@ -82,8 +82,8 @@ async fn get_transactions(web3: &Web3<Http>, user_address: &str, from_block: u64
 async fn main() {
     let web3 = connect_to_ethereum_node().await;
     let token_address = "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48"; // USDC
-    let user_address = "0x5E583B6a1686f7Bc09A6bBa66E852A7C80d36F00"; // mk personal
-    let from_block = 	600; // how many blocks to look backward   
+    let user_address = "0x3063A09bdf5A290eA13858Bf961C1C36ddc83D6a"; 
+    let from_block = 	100; // how many blocks to look backward   
     interact_with_erc20(&web3, token_address, user_address).await;
     get_transactions(&web3, user_address, from_block).await;
 }
