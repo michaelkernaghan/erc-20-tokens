@@ -47,6 +47,5 @@ async fn main() {
     let web3 = connect_to_ethereum_node().await;
     let token_address = "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48"; // USDC
     let user_address = "0x54263d2C8D849006C97De20D3Eb9A68D90Fdb5A0"; // mk personal
-    //let user_address = "0x7b0Dd9A2E4Bd593071DC3f67f8F02f4264608280"; // eg personal
     interact_with_erc20(&web3, token_address, user_address).await;
 }
